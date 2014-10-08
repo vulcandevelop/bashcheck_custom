@@ -83,6 +83,8 @@ elif [ -n "$(env BASH_FUNC_x%%='() { _;}>_[$($())] { echo x;}' $bash -c : 2>/dev
 	warn "CVE-2014-6278 (lcamtuf bug #2)"
 elif [ -n "$(env 'BASH_FUNC_x()'='() { _;}>_[$($())] { echo x;}' $bash -c : 2>/dev/null)" ]; then
 	warn "CVE-2014-6278 (lcamtuf bug #2)"
+elif [ -n "$(env 'BASH_FUNC_x()'='() { x() { _; }; x() { _; } <<`perl -e '{print "A"x1000}'`; }' bash -c : 2>/dev/null)"]; then
+	warn "CVE-2014-6278 (lcamtuf bug #2)"
 else
 	good "CVE-2014-6278 (lcamtuf bug #2)"
 fi
